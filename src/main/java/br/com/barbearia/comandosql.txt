@@ -1,0 +1,44 @@
+USE barbearia;
+
+CREATE TABLE Usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    login VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    tipo ENUM('CLIENTE', 'FUNCIONARIO') NOT NULL
+);
+
+-- Tabela de Clientes
+CREATE TABLE Cliente (
+    id INT PRIMARY KEY,
+    telefone VARCHAR(15),
+    email VARCHAR(100),
+    FOREIGN KEY (id) REFERENCES Usuario(id)
+);
+
+-- Tabela de Funcionários
+CREATE TABLE Funcionario (
+    id INT PRIMARY KEY,
+    cargo VARCHAR(50),
+    salario DECIMAL(10, 2),
+    FOREIGN KEY (id) REFERENCES Usuario(id)
+);
+
+-- Tabela de Serviços
+CREATE TABLE Servico (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL
+);
+
+-- Tabela de Agendamento
+CREATE TABLE Agendamento (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cliente_id INT,
+    servico_id INT,
+    data_horario DATETIME NOT NULL,
+    status ENUM('PENDENTE', 'CONFIRMADO', 'CANCELADO') DEFAULT 'PENDENTE',
+    FOREIGN KEY (cliente_id) REFERENCES Cliente(id),
+    FOREIGN KEY (servico_id) REFERENCES Servico(id)
+);
+
