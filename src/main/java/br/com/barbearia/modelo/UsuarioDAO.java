@@ -1,5 +1,6 @@
-package br.com.barbearia.dao;
+package br.com.barbearia.modelo;
 
+import br.com.barbearia.dao.BaseDAO;
 import br.com.barbearia.modelo.Usuario;
 
 import java.sql.Connection;

@@ -1,5 +1,8 @@
-package br.com.barbearia.dao;
+package br.com.barbearia.modelo;
 
+import br.com.barbearia.dao.BaseDAO;
+import br.com.barbearia.dao.ClienteDAO;
+import br.com.barbearia.dao.ServicoDAO;
 import br.com.barbearia.modelo.Agendamento;
 import br.com.barbearia.modelo.StatusAgendamento;
 
@@ -34,7 +37,7 @@ public class AgendamentoDAO extends BaseDAO {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    ClienteDAO clienteDAO = new ClienteDAO();
+                    br.com.barbearia.dao.ClienteDAO clienteDAO = new br.com.barbearia.dao.ClienteDAO();
                     ServicoDAO servicoDAO = new ServicoDAO();
 
                     return new Agendamento(
@@ -58,7 +61,7 @@ public class AgendamentoDAO extends BaseDAO {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                ClienteDAO clienteDAO = new ClienteDAO();
+                br.com.barbearia.dao.ClienteDAO clienteDAO = new ClienteDAO();
                 ServicoDAO servicoDAO = new ServicoDAO();
 
                 agendamentos.add(new Agendamento(
